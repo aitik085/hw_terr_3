@@ -58,7 +58,7 @@ variable "vm_metadata_base" {
 }
 
 variable "vms_resources" {
-  description = "Конфигурация ресурсов (CPU, RAM, Core Fraction) для ВМ."
+  description = "Конфигурация ВМ count loop"
   type = map(object({
     cores         = number
     memory        = number
@@ -72,3 +72,32 @@ variable "vms_resources" {
     }    
   }
 }
+
+variable "vms_config" {
+  description = "Конфигурация ВМ. Ключ - имя ВМ, значение - объект с параметрами."
+  type = map(object({
+    cpu           = number
+    ram           = number
+    disk_volume   = number
+    core_fraction = number
+  }))
+  default = {
+    "main" = {
+      cpu         = 2
+      ram         = 1024  # МБ
+      disk_volume = 5   # ГБ
+      core_fraction = 20
+    }
+    "replica" = {
+      cpu         = 2
+      ram         = 2048  # МБ
+      disk_volume = 4    # ГБ
+      core_fraction = 20
+    }
+  }
+}
+
+#variable "vms_config" {
+#  type = map(object({ cpu = number, ram = number, disk_volume = number }))
+#  default = { /* ... */ }
+#}
