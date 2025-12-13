@@ -8,8 +8,16 @@ terraform {
 }
 
 provider "yandex" {
-  token     = var.token
+  #token     = var.token
   cloud_id  = var.cloud_id
   folder_id = var.folder_id
   zone      = var.default_zone
+  service_account_key_file = pathexpand("~/.authorized_key.json") 
+}
+
+variable "vms_ssh_public_root_key" {
+  type        = string
+  sensitive   = true
+  default     = "<your_ssh_ed25519_key>"
+  description = "ssh-keygen -t ed25519"
 }
