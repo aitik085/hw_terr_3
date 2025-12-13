@@ -96,8 +96,3 @@ variable "vms_config" {
     }
   }
 }
-
-#variable "vms_config" {
-#  type = map(object({ cpu = number, ram = number, disk_volume = number }))
-#  default = { /* ... */ }
-#}
