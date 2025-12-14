@@ -22,6 +22,9 @@ resources {
     nat       = true
   }
   metadata = local.vm_metadata
+  depends_on = [
+    yandex_compute_instance.db_vm
+  ]
 }
 
 
