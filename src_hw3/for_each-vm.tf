@@ -5,7 +5,7 @@ platform_id = var.vm_platform_id
 zone        = var.default_zone
 resources {
     cores         = each.value.cpu    
-    memory = each.value.ram / 1024
+    memory        = each.value.ram / 1024
     core_fraction = each.value.core_fraction
  } 
  boot_disk {
@@ -22,6 +22,4 @@ network_interface {
     nat       = true
 }
 metadata = local.vm_metadata
-# Вывод для проверки созданных ресурсов
-# Output: db_vm["main"].name = "main"
 }

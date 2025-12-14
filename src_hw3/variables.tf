@@ -1,9 +1,3 @@
-###cloud vars
-#variable "token" {
-# type        = string
-# description = "OAuth-token; https://cloud.yandex.ru/docs/iam/concepts/authorization/oauth-token"
-#}
-
 variable "cloud_id" {
   type        = string
   description = "https://cloud.yandex.ru/docs/resource-manager/operations/cloud/get-id"
@@ -94,5 +88,17 @@ variable "vms_config" {
       disk_volume = 4    # ГБ
       core_fraction = 20
     }
-  }
+  } 
+}
+
+variable "disk_name" {
+  type        = string
+  default     = "disk"
+  description = "VPC network&subnet name"
+}
+
+variable "hdd" {
+  type        = string
+  default     = "network-hdd"
+  description = "Тип диска (network-hdd, network-ssd)"
 }
