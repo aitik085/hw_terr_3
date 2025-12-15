@@ -5,16 +5,9 @@ variable "web_provision" {
 }
 
 resource "local_file" "ansible_inventory" {
-  filename = "hosts"
+  filename = "hosts.ini"
   
   content = templatefile("${path.module}/1hosts.tftpl", {
-    
-    db_main_ip    = yandex_compute_instance.db_vm["main"].network_interface[0].nat_ip_address
-    db_main_fqdn  = yandex_compute_instance.db_vm["main"].fqdn
-
-    db_replica_ip   = yandex_compute_instance.db_vm["replica"].network_interface[0].nat_ip_address
-    db_replica_fqdn = yandex_compute_instance.db_vm["replica"].fqdn    
-    
     webservers = [
       for instance in yandex_compute_instance.web : {
         name        = instance.name
@@ -29,7 +22,7 @@ resource "local_file" "ansible_inventory" {
     yandex_compute_instance.web
   ]
 }
-
+/*
 resource "null_resource" "web_hosts_provision" {
   count = var.web_provision == true ? 1 : 0
   
@@ -60,3 +53,4 @@ resource "null_resource" "web_hosts_provision" {
       # Можно добавить хэш плейбука: playbook_src_hash = filesha256("${abspath(path.module)}/1test.yml")
   }  
 }
+*/

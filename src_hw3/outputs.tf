@@ -1,15 +1,6 @@
 output "vm_connection_info" {
   description = "Информация для подключения и идентификации виртуальных машин"
   value = {    
-    "${yandex_compute_instance.db_vm["main"].name}" = {
-      instance_name = yandex_compute_instance.db_vm["main"].name
-      external_ip   = yandex_compute_instance.db_vm["main"].network_interface[0].nat_ip_address
-      internal_ip   = yandex_compute_instance.db_vm["main"].network_interface[0].ip_address
-      fqdn          = yandex_compute_instance.db_vm["main"].fqdn
-      ssh_command   = "ssh ubuntu@${yandex_compute_instance.db_vm["main"].network_interface[0].nat_ip_address}"
-      # Вывод для проверки созданных ресурсов
-# Output: db_vm["main"].name = "main"
-    }    
     "${yandex_compute_instance.web[0].name}" = {
       instance_name = yandex_compute_instance.web[0].name
       external_ip   = yandex_compute_instance.web[0].network_interface[0].nat_ip_address
