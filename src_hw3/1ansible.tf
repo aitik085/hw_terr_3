@@ -15,11 +15,19 @@ resource "local_file" "ansible_inventory" {
         fqdn        = instance.fqdn
       }
     ]
+    db_main_ip    = yandex_compute_instance.db_vm["main"].network_interface[0].nat_ip_address
+    db_main_fqdn  = yandex_compute_instance.db_vm["main"].fqdn
+    db_replica_ip = yandex_compute_instance.db_vm["replica"].network_interface[0].nat_ip_address
+    db_replica_fqdn = yandex_compute_instance.db_vm["replica"].fqdn
+
+    storage_ip    = yandex_compute_instance.storage.network_interface[0].nat_ip_address
+    storage_fqdn  = yandex_compute_instance.storage.fqdn
   })
 
   depends_on = [
+    yandex_compute_instance.web,
     yandex_compute_instance.db_vm,
-    yandex_compute_instance.web
+    yandex_compute_instance.storage
   ]
 }
 /*

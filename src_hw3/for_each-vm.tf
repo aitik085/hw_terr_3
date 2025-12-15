@@ -1,4 +1,4 @@
-/*
+
 resource "yandex_compute_instance" "db_vm" {
 for_each    = var.vms_config
 name        = each.key
@@ -24,4 +24,3 @@ network_interface {
 }
 metadata = local.vm_metadata
 }
-*/

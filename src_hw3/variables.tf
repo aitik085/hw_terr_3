@@ -66,3 +66,38 @@ variable "vms_resources" {
     }    
   }
 }
+variable "vms_config" {
+  description = "Конфигурация ВМ. Ключ - имя ВМ, значение - объект с параметрами."
+  type = map(object({
+    cpu           = number
+    ram           = number
+    disk_volume   = number
+    core_fraction = number
+  }))
+  default = {
+    "main" = {
+      cpu         = 2
+      ram         = 1024  # МБ
+      disk_volume = 5   # ГБ
+      core_fraction = 20
+    }
+    "replica" = {
+      cpu         = 2
+      ram         = 2048  # МБ
+      disk_volume = 4    # ГБ
+      core_fraction = 20
+    }
+  } 
+}
+
+variable "disk_name" {
+  type        = string
+  default     = "disk"
+  description = "VPC network&subnet name"
+}
+
+variable "hdd" {
+  type        = string
+  default     = "network-hdd"
+  description = "Тип диска (network-hdd, network-ssd)"
+}

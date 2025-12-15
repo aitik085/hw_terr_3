@@ -1,7 +1,12 @@
 [webservers]
 
 %{~ for vm in webservers ~}
-
 ${vm.name} ansible_host=${vm.external_ip} fqdn=${vm.fqdn}
+%{ endfor }
 
-%{~ endfor ~}
+[databases]
+main ansible_host=${db_main_ip} fqdn=${db_main_fqdn}
+replica ansible_host=${db_replica_ip} fqdn=${db_replica_fqdn}
+
+[storage]
+storage ansible_host=${storage_ip} fqdn=${storage_fqdn}
