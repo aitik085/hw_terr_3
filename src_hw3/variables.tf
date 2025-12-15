@@ -84,7 +84,7 @@ variable "vms_config" {
     "replica" = {
       cpu         = 2
       ram         = 2048  # МБ
-      disk_volume = 4    # ГБ
+      disk_volume = 6    # ГБ
       core_fraction = 20
     }
   } 
