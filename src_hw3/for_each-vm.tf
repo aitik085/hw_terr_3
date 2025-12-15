@@ -2,6 +2,7 @@
 resource "yandex_compute_instance" "db_vm" {
 for_each    = var.vms_config
 name        = each.key
+hostname    =  each.key 
 platform_id = var.vm_platform_id
 zone        = var.default_zone
 resources {
